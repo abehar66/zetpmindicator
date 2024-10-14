@@ -34,6 +34,21 @@ sap.ui.define([
             });
             this.setModel(oViewModel, "worklistView");
 
+            this.reportModel = new JSONModel(
+                {
+                    'IndicatorSet': [],
+                    'IRMSet': [],
+                    'IRGSet': [],
+                    'IFPSet': [],
+                    'Parameters' : {
+                                    'Desde': new Date(),
+                                    'Hasta': new Date(),
+                                   },
+                    'Taller': []               
+                });
+
+            this.setModel(this.reportModel, "ReportModel");
+
         },
 
         /* =========================================================== */

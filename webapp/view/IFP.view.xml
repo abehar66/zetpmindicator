@@ -1,0 +1,73 @@
+<mvc:View 
+  id="IFPView"  
+  controllerName="zetpmindicator.controller.Worklist"  
+  xmlns="sap.m" 
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:f="sap.ui.layout.form"
+  xmlns:core="sap.ui.core" 
+  xmlns:m="sap.m" 
+  xmlns:l="sap.ui.layout" >  
+  <f:SimpleForm		
+		id="IFPForm"
+		columnsL="3"
+		columnsM="3"
+		editable="true"
+		layout="ResponsiveGridLayout">		
+		<f:content>	
+             <Table
+                id="tableIFP"
+                width="auto"
+                items="{
+                    path: 'ReportModel>/IFPSet',
+                    sorter: {
+                        path: 'Workcenter',
+                        descending: false
+                    }
+                }"
+                noDataText="{worklistView>/tableNoDataText}"
+                busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+                growing="true"
+                growingScrollToLoad="true"
+                updateFinished=".onUpdateFinished">
+
+                <headerToolbar>
+                    <OverflowToolbar id="headerflowIFP" >
+                        <Title
+                            id="tableHeaderIFP"
+                            text="{worklistView>/worklistTableTitle}"
+                            level="H3"/>
+                        <ToolbarSpacer id="headerSpacerIFP" />
+                        
+                        <SearchField
+                            id="searchFieldIFP"
+                            tooltip="{i18n>worklistSearchTooltip}"
+                            search=".onSearch">
+                            <layoutData>
+                                <OverflowToolbarLayoutData
+                                    id="headerLayoutIFP"
+                                    maxWidth="200px"
+                                    priority="NeverOverflow"/>
+                            </layoutData>
+                        </SearchField>
+                         
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column id="IFPnameColumn1">
+                        <Text text="{i18n>tableColumnWorkcenterTitle}" id="IFPcol1"/>
+                    </Column>                                                    
+                </columns>
+
+                <items>
+                    <ColumnListItem
+                        id="_IDGenColumnListItemIFP"
+                        type="Navigation"
+                        press=".onPress">                                              
+                        <Text id="_IDGenIFPText1" text="{ReportModel>Workcenterdescr}"/>                        
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+    </f:SimpleForm>	
+</mvc:View> 

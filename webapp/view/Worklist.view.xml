@@ -5,83 +5,44 @@
     xmlns:semantic="sap.f.semantic">
 
     <semantic:SemanticPage
-        id="page"
+        id="page1"
         headerPinnable="false"
         toggleHeaderOnTitleClick="false">
 
         <semantic:titleHeading>
             <Title
+                id="Title1"
                 text="{i18n>worklistTitle}"
                 level="H2"/>
         </semantic:titleHeading>
 
-        <semantic:content>
-            <Table
-                id="table"
-                width="auto"
-                items="{
-                    path: '/IndicatorsSet',
-                    sorter: {
-                        path: 'IRM',
-                        descending: false
-                    }
-                }"
-                noDataText="{worklistView>/tableNoDataText}"
-                busyIndicatorDelay="{worklistView>/tableBusyDelay}"
-                growing="true"
-                growingScrollToLoad="true"
-                updateFinished=".onUpdateFinished">
-
-                <headerToolbar>
-                    <OverflowToolbar>
-                        <Title
-                            id="tableHeader"
-                            text="{worklistView>/worklistTableTitle}"
-                            level="H3"/>
-                        <ToolbarSpacer />
-                        <SearchField
-                            id="searchField"
-                            tooltip="{i18n>worklistSearchTooltip}"
-                            search=".onSearch">
-                            <layoutData>
-                                <OverflowToolbarLayoutData
-                                    maxWidth="200px"
-                                    priority="NeverOverflow"/>
-                            </layoutData>
-                        </SearchField>
-                    </OverflowToolbar>
-                </headerToolbar>
-
-                <columns>
-                    <Column id="nameColumn">
-                        <Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
-                    </Column>
-                    <Column id="unitNumberColumn" hAlign="End">
-                        <Text text="{i18n>tableUnitNumberColumnTitle}" id="unitNumberColumnTitle"/>
-                    </Column>
-                </columns>
-
+        <semantic:content>     
+           <IconTabBar
+				id="iconTabBar"
+				headerBackgroundDesign="Transparent"
+				class="sapUiResponsiveContentPadding"
+				binding="{ReportModel}"
+				select=""
+				selectedKey="">				
                 <items>
-                    <ColumnListItem
-                        type="Navigation"
-                        press=".onPress">
-                        <cells>
-                            <ObjectIdentifier
-                                title="{IRM}"/>
-                            <ObjectNumber
-                                number="{
-                                    path: 'IRM',
-                                    formatter: '.formatter.numberUnit'
-                                }"
-                                unit="{TallerId}" />
-                        </cells>
-                    </ColumnListItem>
-                </items>
-            </Table>
-        </semantic:content>
+                    <IconTabFilter id="IRMTab" text="Indicador IRM" key="key1">
+						<mvc:XMLView id="IRMView1" viewName="zetpmindicator.view.IRM"></mvc:XMLView>
+					</IconTabFilter>						
+
+                    <IconTabFilter id="IRGTab" text="Indicador IRG" key="key2">
+						<mvc:XMLView id="PuestoView1" viewName="zetpmindicator.view.IRG"></mvc:XMLView>
+					</IconTabFilter>	
+
+                    <IconTabFilter id="IFPTab" text="Indicador IFP" key="key3">
+						<mvc:XMLView id="IFPView1" viewName="zetpmindicator.view.IFP"></mvc:XMLView>
+					</IconTabFilter>                 					
+                    						
+                </items>                
+			</IconTabBar> 
+   </semantic:content> 
 
         <semantic:sendEmailAction>
-            <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
+            <semantic:SendEmailAction id="shareEmail1" press=".onShareEmailPress"/>
         </semantic:sendEmailAction>
 
     </semantic:SemanticPage>
