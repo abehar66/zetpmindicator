@@ -34,7 +34,7 @@
                     <OverflowToolbar id="headerflowIFP" >
                         <Title
                             id="tableHeaderIFP"
-                            text="{worklistView>/worklistTableTitle}"
+                            text="{worklistView>/worklistTableIFPTitle}"
                             level="H3"/>
                         <ToolbarSpacer id="headerSpacerIFP" />
                         

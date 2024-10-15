@@ -14,6 +14,63 @@
 		editable="true"
 		layout="ResponsiveGridLayout">		
 		<f:content>	
+           <VBox alignItems="Center"  id="IRMVBox1">
+            <HBox alignItems="Center" id="IRMHBox1"> 
+             <Table
+                id="tableIRMHeader"
+                width="auto"
+                items="{
+                    path: 'ReportModel>/IRMHSet',
+                    sorter: {
+                        path: 'Workcenter',
+                        descending: false
+                    }
+                }"
+                noDataText="{worklistView>/tableNoDataText}"
+                busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+                growing="true"
+                growingScrollToLoad="true"
+                updateFinished=".onUpdateFinished">
+
+                <headerToolbar>
+                    <OverflowToolbar id="headerflowIRMH" >
+                        <Title
+                            id="tableHeaderIRMH"
+                            text="{worklistView>/worklistTableIRMTitle}" 
+                            level="H3"/>                                                
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column id="IRMHnameColumn1">
+                        <Text text="{i18n>tableColumnMaintplantTitle}" id="IRMHcol1"/>
+                    </Column>                    
+                    <Column id="IRMHnameColumn2">    
+                        <Text text="{i18n>tableColumnReceveidQuantityTitle}" id="IRMHcol2"/> 
+                    </Column>                    
+                    <Column id="IRMHnameColumn3">        
+                        <Text text="{i18n>tableColumnRepairedQuantityTitle}" id="IRMHcol3"/>                        
+                    </Column>                                                    
+                    <Column id="IRMHnameColumn4">        
+                        <Text text="{i18n>tableColumnIRMTitle}" id="IRMHcol4"/>                        
+                    </Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem
+                        id="_IDGenColumnListItemIRMH"
+                        type="Navigation"
+                        press=".onPress">
+                        <Text id="_IDGenIRMHText1" text="{ReportModel>Maintplant}"/>                                         
+                        <Text id="_IDGenIRMHText2" text="{ReportModel>ReceveidQuantity}"/>
+                        <Text id="_IDGenIRMHText3" text="{ReportModel>RepairedElementsQuantity}"/>
+                        <Text id="_IDGenIRMHText4" text="{ReportModel>IRM}"/>                                               
+                    </ColumnListItem>
+                </items>
+            </Table>
+            </HBox > 
+
+            <HBox alignItems="Center" id="IRMHBox2"> 
              <Table
                 id="tableIRM"
                 width="auto"
@@ -33,41 +90,46 @@
                 <headerToolbar>
                     <OverflowToolbar id="headerflowIRM" >
                         <Title
-                            id="tableHeaderIRM"
-                            text="{worklistView>/worklistTableTitle}"
+                            id="tableHeaderIRM"                            
                             level="H3"/>
-                        <ToolbarSpacer id="headerSpacerIRM" />
-                        
-                        <SearchField
-                            id="searchFieldIRM"
-                            tooltip="{i18n>worklistSearchTooltip}"
-                            search=".onSearch">
-                            <layoutData>
-                                <OverflowToolbarLayoutData
-                                    id="headerLayout"
-                                    maxWidth="200px"
-                                    priority="NeverOverflow"/>
-                            </layoutData>
-                        </SearchField>
-                         
+                        <ToolbarSpacer id="headerSpacerIRM" />                         
                     </OverflowToolbar>
                 </headerToolbar>
 
                 <columns>
-                    <Column id="IRMnameColumn1">
-                        <Text text="{i18n>tableColumnWorkcenterTitle}" id="IRMcol1"/>
-                    </Column>                                                    
+                    <Column id="IRMnameColumn1">                        
+                        <Text text="{i18n>tableColumnMaintplantTitle}" id="IRMcol1"/>
+                    </Column>                   
+                    <Column id="IRMnameColumn2">                                     
+                        <Text text="{i18n>tableColumnWorkcenterTitle}" id="IRMcol2"/>
+                    </Column>                   
+                    <Column id="IRMnameColumn3">                                     
+                        <Text text="{i18n>tableColumnReceveidQuantityTitle}" id="IRMcol3"/> 
+                    </Column>                   
+                    <Column id="IRMnameColumn4">                                     
+                        <Text text="{i18n>tableColumnRepairedQuantityTitle}" id="IRMcol4"/>   
+                    </Column> 
+                    <Column id="IRMnameColumn5">        
+                        <Text text="{i18n>tableColumnIRMTitle}" id="IRMcol5"/>                        
+                    </Column>                                                   
+                     
                 </columns>
 
                 <items>
                     <ColumnListItem
                         id="_IDGenColumnListItemIRM"
                         type="Navigation"
-                        press=".onPress">                                              
-                        <Text id="_IDGenIRMText1" text="{ReportModel>Workcenterdescr}"/>                        
+                        press=".onPress">                        
+                        <Text id="_IDGenIRMText1" text="{ReportModel>Maintplant}"/>    
+                        <Text id="_IDGenIRMText2" text="{ReportModel>Workcenterdescr}"/>                                     
+                        <Text id="_IDGenIRMText3" text="{ReportModel>ReceveidQuantity}"/>
+                        <Text id="_IDGenIRMText4" text="{ReportModel>RepairedElementsQuantity}"/>  
+                        <Text id="_IDGenIRMText5" text="{ReportModel>IRM}"/>                 
                     </ColumnListItem>
                 </items>
             </Table>
+            </HBox > 
+            </VBox >
         </f:content>
     </f:SimpleForm>	
 </mvc:View> 

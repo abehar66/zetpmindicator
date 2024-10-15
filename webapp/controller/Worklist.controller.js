@@ -3,8 +3,9 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "../model/formatter",
     "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator"
-], function (BaseController, JSONModel, formatter, Filter, FilterOperator) {
+    "sap/ui/model/FilterOperator",
+    '../model/oDataModel',
+], function (BaseController, JSONModel, formatter, Filter, FilterOperator,oDataModel) {
     "use strict";
 
     return BaseController.extend("zetpmindicator.controller.Worklist", {
@@ -27,7 +28,9 @@ sap.ui.define([
 
             // Model used to manipulate control states
             oViewModel = new JSONModel({
-                worklistTableTitle : this.getResourceBundle().getText("worklistTableTitle"),
+                worklistTableIRMTitle : this.getResourceBundle().getText("worklistTableIRMTitle"),
+                worklistTableIRGTitle : this.getResourceBundle().getText("worklistTableIRGTitle"),
+                worklistTableIFPTitle : this.getResourceBundle().getText("worklistTableIFPTitle"),
                 shareSendEmailSubject: this.getResourceBundle().getText("shareSendEmailWorklistSubject"),
                 shareSendEmailMessage: this.getResourceBundle().getText("shareSendEmailWorklistMessage", [location.href]),
                 tableNoDataText : this.getResourceBundle().getText("tableNoDataText")
@@ -37,6 +40,7 @@ sap.ui.define([
             this.reportModel = new JSONModel(
                 {
                     'IndicatorSet': [],
+                    'IRMHSet': [],
                     'IRMSet': [],
                     'IRGSet': [],
                     'IFPSet': [],
@@ -48,6 +52,8 @@ sap.ui.define([
                 });
 
             this.setModel(this.reportModel, "ReportModel");
+            oDataModel.init(this);
+            this.loadTaller();
 
         },
 
@@ -157,7 +163,91 @@ sap.ui.define([
             if (aTableSearchState.length !== 0) {
                 oViewModel.setProperty("/tableNoDataText", this.getResourceBundle().getText("worklistNoDataWithSearchText"));
             }
-        }
+        },
+
+        loadTaller: function () {
+            oDataModel.getListMaestro('TALLER')
+                .then(oData => {
+                    if (oData.results.length === 1) {
+                        this.getView().byId('IdTaller').setSelectedKey(oData.results[0].Key);
+                        this.getView().byId('IdTaller').setValue(oData.results[0].Value);                        
+                        this.reportModel.setProperty('/Taller', oData.results);                                                
+                    }
+                    else {
+                        this.reportModel.setProperty('/Taller', oData.results);                        
+                    }
+                })
+                .catch(e => {
+
+                })
+        },
+
+        onDisplay: function (evt) {            
+            const desde = this.reportModel.getProperty('/Parameters/Desde');
+            const hasta = this.reportModel.getProperty('/Parameters/Hasta');
+            const taller = this.getView().byId('IdTaller').getSelectedKey();
+            
+            var dateFormat = sap.ui.core.format.DateFormat.getInstance({ UTC: true, pattern: "yyyyMMdd" });
+            var ini = dateFormat.format(desde);
+            var fin = dateFormat.format(hasta);            
+
+            this.getIRMSet(taller,ini,fin);
+            this.getIRGSet(taller,ini,fin);
+            this.getIFPSet(taller,ini,fin);            
+        },
+
+        getIRMSet: function(taller,desde,hasta){
+            const tableIRM = this.byId("IRMView1--tableIRM");
+
+            tableIRM.setBusy(true);
+            oDataModel.getIndicatorSet('IRM',taller,desde,hasta)
+                .then(oData => {
+                    let tableHeader = [];
+                    let tablePosition = [];
+
+                    oData.results.forEach(e => {
+
+                    });
+
+                    this.reportModel.setProperty('/IRMSet', tableHeader );
+
+                    tableIRM.getBinding("items").getModel().setProperty("/IRMSet", oData.results);                    
+                    tableIRM.setBusy(false);
+                })
+                .catch(e => {
+                    tableIRM.setBusy(false);
+                })        
+        },    
+
+        getIRGSet: function(taller,desde,hasta){
+            const tableIRG = this.byId("IRGView1--tableIRG");
+
+            tableIRG.setBusy(true);
+            oDataModel.getIndicatorSet('IRG',taller,desde,hasta)
+                .then(oData => {
+                    this.reportModel.setProperty('/IRGSet', oData.results);
+                    tableIRG.getBinding("items").getModel().setProperty("/IRGSet", oData.results);                    
+                    tableIRG.setBusy(false);
+                })
+                .catch(e => {
+                    tableIRG.setBusy(false);
+                })
+        },    
+
+        getIFPSet: function(taller,desde,hasta){
+            const tableIFP = this.byId("IFPView1--tableIFP");
+
+            tableIFP.setBusy(true);
+            oDataModel.getIndicatorSet('IFP',taller,ini,fin)
+                .then(oData => {
+                    this.reportModel.setProperty('/IFPSet', oData.results);
+                    tableIRM.getBinding("items").getModel().setProperty("/IFPSet", oData.results);                    
+                    tableIFP.setBusy(false);
+                })
+                .catch(e => {
+                    tableIFP.setBusy(false);
+                })
+        },    
 
     });
 });

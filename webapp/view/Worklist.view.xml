@@ -2,6 +2,7 @@
     controllerName="zetpmindicator.controller.Worklist"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
     xmlns:semantic="sap.f.semantic">
 
     <semantic:SemanticPage
@@ -15,6 +16,56 @@
                 text="{i18n>worklistTitle}"
                 level="H2"/>
         </semantic:titleHeading>
+
+        <semantic:titleCustomTextActions>
+            <Button id="IdBtnMostrar" icon="sap-icon://kpi-corporate-performance" 
+                                 tooltip="Mostrar Indicadores" 
+                                 text="{i18n>buttonDisplay}" 
+                                 type="Accept"
+                                 press="onDisplay" visible="true" />                             
+      </semantic:titleCustomTextActions> 
+
+      <semantic:headerContent>
+         <VBox alignItems="Center"  id="WorklistBox1">
+
+          <HBox alignItems="Center" id="WorklistBox4"> 
+           <Label id="idtaller" text="Taller: " labelFor="IdTaller" visible="true" />
+           <ComboBox
+                    required="true" 
+                    id="IdTaller"                                    
+                    width="200px"                                      
+                    items="{
+                            path: 'ReportModel>/Taller',
+                            sorter: { path: 'Key' }
+                           }"  >
+                     <core:Item key="{ReportModel>Key}" text="{ReportModel>Value}" />                         
+            </ComboBox>  
+          </HBox>  
+
+         <HBox alignItems="Center" id="WorklistBox2">
+            <Label id="WorkListLabel" text="Desde: " labelFor="Desde" visible="true" />
+            <DatePicker	id="Desde"			                	
+                            value="{path: 'ReportModel>/Parameters/Desde', type:'sap.ui.model.type.Date' ,
+                                    formatOptions: { style: 'medium', strictParsing: true}   }"  
+                            displayFormat="medium"                                                     
+                            valueFormat="dd-mm-yyyy"
+			                change="handleChange"                            
+			                visible="true" />                             
+           </HBox>                   
+          <HBox alignItems="Center" id="WorklistBox3">     
+           <Label text="Hasta: " labelFor="Hasta" visible="true"/>
+            <DatePicker	id="Hasta"
+			                value="{path: 'ReportModel>/Parameters/Hasta', type:'sap.ui.model.type.Date' ,
+                                    formatOptions: { style: 'medium', strictParsing: true}   }"  
+                            displayFormat="medium"                                                     
+                            valueFormat="dd-mm-yyyy"
+			                change="handleChange"
+			                visible="true"/> 
+                          
+           </HBox>
+          
+         </VBox> 
+       </semantic:headerContent> 
 
         <semantic:content>     
            <IconTabBar
@@ -30,7 +81,7 @@
 					</IconTabFilter>						
 
                     <IconTabFilter id="IRGTab" text="Indicador IRG" key="key2">
-						<mvc:XMLView id="PuestoView1" viewName="zetpmindicator.view.IRG"></mvc:XMLView>
+						<mvc:XMLView id="IRGView1" viewName="zetpmindicator.view.IRG"></mvc:XMLView>
 					</IconTabFilter>	
 
                     <IconTabFilter id="IFPTab" text="Indicador IFP" key="key3">

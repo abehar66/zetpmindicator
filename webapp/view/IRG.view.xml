@@ -34,7 +34,7 @@
                     <OverflowToolbar id="headerflowIRG" >
                         <Title
                             id="tableHeaderIRG"
-                            text="{worklistView>/worklistTableTitle}"
+                            text="{worklistView>/worklistTableIRGTitle}"
                             level="H3"/>
                         <ToolbarSpacer id="headerSpacerIRG" />
                         
