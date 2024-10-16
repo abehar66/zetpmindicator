@@ -43,7 +43,9 @@ sap.ui.define([
                     'IRMHSet': [],
                     'IRMSet': [],
                     'IRGSet': [],
+                    'IRGHSet': [],
                     'IFPSet': [],
+                    'IFPHSet': [],
                     'Parameters' : {
                                     'Desde': new Date(),
                                     'Hasta': new Date(),
@@ -197,40 +199,68 @@ sap.ui.define([
         },
 
         getIRMSet: function(taller,desde,hasta){
+            const tableIRMH = this.byId("IRMView1--tableIRMH");
             const tableIRM = this.byId("IRMView1--tableIRM");
 
             tableIRM.setBusy(true);
+            tableIRMH.setBusy(true);
             oDataModel.getIndicatorSet('IRM',taller,desde,hasta)
                 .then(oData => {
                     let tableHeader = [];
                     let tablePosition = [];
 
-                    oData.results.forEach(e => {
-
+                    oData.results.forEach(e => {                        
+                        if (e.Pernr === '00000000' ){ 
+                            tableHeader.push(e);
+                        }
+                        else{ 
+                            tablePosition.push(e);    
+                        }    
                     });
 
-                    this.reportModel.setProperty('/IRMSet', tableHeader );
-
-                    tableIRM.getBinding("items").getModel().setProperty("/IRMSet", oData.results);                    
+                    this.reportModel.setProperty('/IRMHSet', tableHeader );
+                    this.reportModel.setProperty('/IRMSet', tablePosition );
+                    tableIRM.getBinding("items").getModel().setProperty("/IRMHSet", tableHeader);
+                    tableIRM.getBinding("items").getModel().setProperty("/IRMSet", tablePosition);                    
                     tableIRM.setBusy(false);
+                    tableIRMH.setBusy(false);
                 })
                 .catch(e => {
                     tableIRM.setBusy(false);
+                    tableIRMH.setBusy(false);
                 })        
         },    
 
         getIRGSet: function(taller,desde,hasta){
             const tableIRG = this.byId("IRGView1--tableIRG");
+            const tableIRGH = this.byId("IRGView1--tableIRGH");
 
+            tableIRGH.setBusy(true);
             tableIRG.setBusy(true);
             oDataModel.getIndicatorSet('IRG',taller,desde,hasta)
                 .then(oData => {
-                    this.reportModel.setProperty('/IRGSet', oData.results);
-                    tableIRG.getBinding("items").getModel().setProperty("/IRGSet", oData.results);                    
+                    let tableHeader = [];
+                    let tablePosition = [];
+
+                    oData.results.forEach(e => {                        
+                        if (e.Pernr === '00000000' ){ 
+                            tableHeader.push(e);
+                        }
+                        else{ 
+                            tablePosition.push(e);    
+                        }    
+                    });
+
+                    this.reportModel.setProperty('/IRGHSet', tableHeader );
+                    this.reportModel.setProperty('/IRGSet', tablePosition );
+                    tableIRGH.getBinding("items").getModel().setProperty("/IRGHSet", tableHeader);
+                    tableIRG.getBinding("items").getModel().setProperty("/IRGSet", tablePosition);                    
                     tableIRG.setBusy(false);
+                    tableIRGH.setBusy(false);
                 })
                 .catch(e => {
                     tableIRG.setBusy(false);
+                    tableIRGH.setBusy(false);
                 })
         },    
 
@@ -238,7 +268,7 @@ sap.ui.define([
             const tableIFP = this.byId("IFPView1--tableIFP");
 
             tableIFP.setBusy(true);
-            oDataModel.getIndicatorSet('IFP',taller,ini,fin)
+            oDataModel.getIndicatorSet('IFP',taller,desde,hasta)
                 .then(oData => {
                     this.reportModel.setProperty('/IFPSet', oData.results);
                     tableIRM.getBinding("items").getModel().setProperty("/IFPSet", oData.results);                    

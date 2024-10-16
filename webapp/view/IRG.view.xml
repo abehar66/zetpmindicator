@@ -14,6 +14,63 @@
 		editable="true"
 		layout="ResponsiveGridLayout">		
 		<f:content>	
+            <VBox alignItems="Center"  id="IRGVBox1">
+            <HBox alignItems="Center" id="IRGHBox1"> 
+             <Table
+                id="tableIRGH"
+                width="auto"
+                items="{
+                    path: 'ReportModel>/IRGHSet',
+                    sorter: {
+                        path: 'Workcenter',
+                        descending: false
+                    }
+                }"
+                noDataText="{worklistView>/tableNoDataText}"
+                busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+                growing="true"
+                growingScrollToLoad="true"
+                updateFinished=".onUpdateFinished">
+
+                <headerToolbar>
+                    <OverflowToolbar id="headerflowIRGH" >
+                        <Title
+                            id="tableHeaderIRGH"
+                            text="{worklistView>/worklistTableIRGTitle}"
+                            level="H3"/>
+                        <ToolbarSpacer id="headerSpacerIRGH" />                                                                        
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column id="IRGHnameColumn1" >
+                        <Text text="{i18n>tableColumnMaintplantTitle}" id="IRGHcol1"/>
+                    </Column>                    
+                    <Column id="IRGHnameColumn2" >    
+                        <Text text="{i18n>tableColumnReceveidQuantityTitle}" id="IRGHcol2"/> 
+                    </Column>                    
+                    <Column id="IRGHnameColumn3"  >        
+                        <Text text="{i18n>tableColumnRepairedQuantityTitle}" id="IRGHcol3"/>                        
+                    </Column>                                                    
+                    <Column id="IRGHnameColumn4" >        
+                        <Text text="{i18n>tableColumnIRGTitle}" id="IRGHcol4"/>                        
+                    </Column>
+                </columns>
+
+                 <items>
+                    <ColumnListItem
+                        id="_IDGenColumnListItemIRGH"
+                        type="Navigation"
+                        press=".onPress">
+                        <Text id="_IDGenIRGHText1" text="{ReportModel>Maintplant}"/>                                         
+                        <Text id="_IDGenIRGHText2" text="{ReportModel>ReceveidQuantity}"/>
+                        <Text id="_IDGenIRGHText3" text="{ReportModel>RepairedElementsQuantity}"/>
+                        <Text id="_IDGenIRGHText4" text="{ReportModel>IRG}%"/>                                               
+                    </ColumnListItem>
+                </items>
+            </Table>
+           </HBox > 
+           <HBox alignItems="Center" id="IRGBox2"> 
              <Table
                 id="tableIRG"
                 width="auto"
@@ -36,38 +93,49 @@
                             id="tableHeaderIRG"
                             text="{worklistView>/worklistTableIRGTitle}"
                             level="H3"/>
-                        <ToolbarSpacer id="headerSpacerIRG" />
-                        
-                        <SearchField
-                            id="searchFieldIRG"
-                            tooltip="{i18n>worklistSearchTooltip}"
-                            search=".onSearch">
-                            <layoutData>
-                                <OverflowToolbarLayoutData
-                                    id="headerLayoutIRG"
-                                    maxWidth="200px"
-                                    priority="NeverOverflow"/>
-                            </layoutData>
-                        </SearchField>
-                         
+                        <ToolbarSpacer id="headerSpacerIRG" />                       
+                                                 
                     </OverflowToolbar>
                 </headerToolbar>
 
                 <columns>
-                    <Column id="IRGnameColumn1">
-                        <Text text="{i18n>tableColumnWorkcenterTitle}" id="IRGcol1"/>
-                    </Column>                                                    
-                </columns>
+                    <Column id="IRGnameColumn1">                        
+                        <Text text="{i18n>tableColumnMaintplantTitle}" id="IRGcol1"/>
+                    </Column>                   
+                    <Column id="IRGnameColumn2">                                     
+                        <Text text="{i18n>tableColumnWorkcenterTitle}" id="IRGcol2"/>
+                    </Column>                   
+                    <Column id="IRGnameColumn6">                                     
+                        <Text text="{i18n>tableColumnPernrTitle}" id="IRGcol6"/>
+                    </Column>                   
+                    <Column id="IRGnameColumn3">                                     
+                        <Text text="{i18n>tableColumnReceveidQuantityTitle}" id="IRGcol3"/> 
+                    </Column>                   
+                    <Column id="IRGnameColumn4">                                     
+                        <Text text="{i18n>tableColumnRepairedQuantityTitle}" id="IRGcol4"/>   
+                    </Column> 
+                    <Column id="IRGnameColumn5">        
+                        <Text text="{i18n>tableColumnIRGTitle}" id="IRGcol5"/>                        
+                    </Column>                                                   
+                     
+                </columns>          
 
                 <items>
                     <ColumnListItem
                         id="_IDGenColumnListItemIRG"
                         type="Navigation"
-                        press=".onPress">                                              
-                        <Text id="_IDGenIRGText1" text="{ReportModel>Workcenterdescr}"/>                        
+                        press=".onPress">                        
+                        <Text id="_IDGenIRGText1" text="{ReportModel>Maintplant}"/>    
+                        <Text id="_IDGenIRGText2" text="{ReportModel>Workcenterdescr}"/>                                     
+                        <Text id="_IDGenIRGText6" text="{ReportModel>Pernr}"/>
+                        <Text id="_IDGenIRGText3" text="{ReportModel>ReceveidQuantity}"/>
+                        <Text id="_IDGenIRGText4" text="{ReportModel>RepairedElementsQuantity}"/>  
+                        <Text id="_IDGenIRGText5" text="{ReportModel>IRG}%"/>                 
                     </ColumnListItem>
                 </items>
             </Table>
+           </HBox > 
+           </VBox >
         </f:content>
     </f:SimpleForm>	
 </mvc:View> 

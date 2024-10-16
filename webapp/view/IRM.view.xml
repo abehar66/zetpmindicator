@@ -17,7 +17,7 @@
            <VBox alignItems="Center"  id="IRMVBox1">
             <HBox alignItems="Center" id="IRMHBox1"> 
              <Table
-                id="tableIRMHeader"
+                id="tableIRMH"
                 width="auto"
                 items="{
                     path: 'ReportModel>/IRMHSet',
@@ -42,20 +42,19 @@
                 </headerToolbar>
 
                 <columns>
-                    <Column id="IRMHnameColumn1">
+                    <Column id="IRMHnameColumn1" >
                         <Text text="{i18n>tableColumnMaintplantTitle}" id="IRMHcol1"/>
                     </Column>                    
-                    <Column id="IRMHnameColumn2">    
+                    <Column id="IRMHnameColumn2" >    
                         <Text text="{i18n>tableColumnReceveidQuantityTitle}" id="IRMHcol2"/> 
                     </Column>                    
-                    <Column id="IRMHnameColumn3">        
+                    <Column id="IRMHnameColumn3"  >        
                         <Text text="{i18n>tableColumnRepairedQuantityTitle}" id="IRMHcol3"/>                        
                     </Column>                                                    
-                    <Column id="IRMHnameColumn4">        
+                    <Column id="IRMHnameColumn4" >        
                         <Text text="{i18n>tableColumnIRMTitle}" id="IRMHcol4"/>                        
                     </Column>
                 </columns>
-
                 <items>
                     <ColumnListItem
                         id="_IDGenColumnListItemIRMH"
@@ -64,7 +63,7 @@
                         <Text id="_IDGenIRMHText1" text="{ReportModel>Maintplant}"/>                                         
                         <Text id="_IDGenIRMHText2" text="{ReportModel>ReceveidQuantity}"/>
                         <Text id="_IDGenIRMHText3" text="{ReportModel>RepairedElementsQuantity}"/>
-                        <Text id="_IDGenIRMHText4" text="{ReportModel>IRM}"/>                                               
+                        <Text id="_IDGenIRMHText4" text="{ReportModel>IRM}%"/>                                               
                     </ColumnListItem>
                 </items>
             </Table>
@@ -103,6 +102,9 @@
                     <Column id="IRMnameColumn2">                                     
                         <Text text="{i18n>tableColumnWorkcenterTitle}" id="IRMcol2"/>
                     </Column>                   
+                    <Column id="IRMnameColumn6">                                     
+                        <Text text="{i18n>tableColumnPernrTitle}" id="IRMcol6"/>
+                    </Column>                   
                     <Column id="IRMnameColumn3">                                     
                         <Text text="{i18n>tableColumnReceveidQuantityTitle}" id="IRMcol3"/> 
                     </Column>                   
@@ -122,9 +124,10 @@
                         press=".onPress">                        
                         <Text id="_IDGenIRMText1" text="{ReportModel>Maintplant}"/>    
                         <Text id="_IDGenIRMText2" text="{ReportModel>Workcenterdescr}"/>                                     
+                        <Text id="_IDGenIRMText6" text="{ReportModel>Pernr}"/>
                         <Text id="_IDGenIRMText3" text="{ReportModel>ReceveidQuantity}"/>
                         <Text id="_IDGenIRMText4" text="{ReportModel>RepairedElementsQuantity}"/>  
-                        <Text id="_IDGenIRMText5" text="{ReportModel>IRM}"/>                 
+                        <Text id="_IDGenIRMText5" text="{ReportModel>IRM}%"/>                 
                     </ColumnListItem>
                 </items>
             </Table>
