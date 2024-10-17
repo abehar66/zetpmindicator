@@ -46,13 +46,13 @@
                     <Column id="IRGHnameColumn1" >
                         <Text text="{i18n>tableColumnMaintplantTitle}" id="IRGHcol1"/>
                     </Column>                    
-                    <Column id="IRGHnameColumn2" >    
+                    <Column id="IRGHnameColumn2" vAlign="Middle" hAlign="Center">    
                         <Text text="{i18n>tableColumnReceveidQuantityTitle}" id="IRGHcol2"/> 
                     </Column>                    
-                    <Column id="IRGHnameColumn3"  >        
+                    <Column id="IRGHnameColumn3"  vAlign="Middle" hAlign="Center">        
                         <Text text="{i18n>tableColumnRepairedQuantityTitle}" id="IRGHcol3"/>                        
                     </Column>                                                    
-                    <Column id="IRGHnameColumn4" >        
+                    <Column id="IRGHnameColumn4" vAlign="Middle" hAlign="Center">        
                         <Text text="{i18n>tableColumnIRGTitle}" id="IRGHcol4"/>                        
                     </Column>
                 </columns>
@@ -106,15 +106,18 @@
                         <Text text="{i18n>tableColumnWorkcenterTitle}" id="IRGcol2"/>
                     </Column>                   
                     <Column id="IRGnameColumn6">                                     
-                        <Text text="{i18n>tableColumnPernrTitle}" id="IRGcol6"/>
+                        <Text text="{i18n>tableColumnPersonalTitle}" id="IRGcol6"/>
                     </Column>                   
-                    <Column id="IRGnameColumn3">                                     
+                    <Column id="IRGnameColumn7">                                     
+                        <Text text="{i18n>tableColumnPersonalNameTitle}" id="IRGcol7"/>
+                    </Column>
+                    <Column id="IRGnameColumn3" vAlign="Middle" hAlign="Center">                                     
                         <Text text="{i18n>tableColumnReceveidQuantityTitle}" id="IRGcol3"/> 
                     </Column>                   
-                    <Column id="IRGnameColumn4">                                     
+                    <Column id="IRGnameColumn4" vAlign="Middle" hAlign="Center">                                     
                         <Text text="{i18n>tableColumnRepairedQuantityTitle}" id="IRGcol4"/>   
                     </Column> 
-                    <Column id="IRGnameColumn5">        
+                    <Column id="IRGnameColumn5" vAlign="Middle" hAlign="Center">        
                         <Text text="{i18n>tableColumnIRGTitle}" id="IRGcol5"/>                        
                     </Column>                                                   
                      
@@ -128,6 +131,7 @@
                         <Text id="_IDGenIRGText1" text="{ReportModel>Maintplant}"/>    
                         <Text id="_IDGenIRGText2" text="{ReportModel>Workcenterdescr}"/>                                     
                         <Text id="_IDGenIRGText6" text="{ReportModel>Pernr}"/>
+                        <Text id="_IDGenIFPText7" text="{ReportModel>PernrName}"/>
                         <Text id="_IDGenIRGText3" text="{ReportModel>ReceveidQuantity}"/>
                         <Text id="_IDGenIRGText4" text="{ReportModel>RepairedElementsQuantity}"/>  
                         <Text id="_IDGenIRGText5" text="{ReportModel>IRG}%"/>                 

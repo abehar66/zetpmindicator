@@ -54,18 +54,50 @@
                 </headerToolbar>
 
                 <columns>
-                    <Column id="IFPnameColumn1">
-                        <Text text="{i18n>tableColumnWorkcenterTitle}" id="IFPcol1"/>
-                    </Column>                                                    
-                </columns>
+                    <Column id="IFPnameColumn1">                        
+                        <Text text="{i18n>tableColumnMaintplantTitle}" id="IFPcol1"/>
+                    </Column>                   
+                    <Column id="IFPnameColumn2">                                     
+                        <Text text="{i18n>tableColumnWorkcenterTitle}" id="IFPcol2"/>
+                    </Column>                   
+                    <Column id="IFPnameColumn3">                                     
+                        <Text text="{i18n>tableColumnPersonalTitle}" id="IFPcol3"/>
+                    </Column>                   
+                    <Column id="IFPnameColumn9">                                     
+                        <Text text="{i18n>tableColumnPersonalNameTitle}" id="IFPcol9"/>
+                    </Column>                   
+                    <Column id="IFPnameColumn4" vAlign="Middle" hAlign="Center">                                       
+                        <Text text="{i18n>tableColumnElaboratedQuantityTitle}" id="IFPcol4"/> 
+                    </Column>                   
+                    <Column id="IFPnameColumn5" vAlign="Middle" hAlign="Center">                                       
+                        <Text text="{i18n>tableColumnClosedOrderQuantityTitle}" id="IFPcol5"/>   
+                    </Column> 
+                    <Column id="IFPnameColumn6" vAlign="Middle" hAlign="Center">                                       
+                        <Text text="{i18n>tableColumnTimeAgreededTitle}" id="IFPcol6"/> 
+                    </Column>                   
+                    <Column id="IFPnameColumn7" vAlign="Middle" hAlign="Center">                                       
+                        <Text text="{i18n>tableColumnTimeWorkedTitle}" id="IFPcol7"/>   
+                    </Column> 
+                    <Column id="IFPnameColumn8" vAlign="Middle" hAlign="Center">        
+                        <Text text="{i18n>tableColumnIFPTitle}" id="IFPcol8"/>                        
+                    </Column>                                                                      
+                </columns>                
 
                 <items>
                     <ColumnListItem
                         id="_IDGenColumnListItemIFP"
                         type="Navigation"
                         press=".onPress">                                              
-                        <Text id="_IDGenIFPText1" text="{ReportModel>Workcenterdescr}"/>                        
-                    </ColumnListItem>
+                        <Text id="_IDGenIFPText1" text="{ReportModel>Maintplant}"/>    
+                        <Text id="_IDGenIFPText2" text="{ReportModel>Workcenterdescr}"/>                                     
+                        <Text id="_IDGenIFPText3" text="{ReportModel>Pernr}"/>
+                        <Text id="_IDGenIFPText4" text="{ReportModel>PernrName}"/>
+                        <Text id="_IDGenIFPText5" text="{ReportModel>ElaboratedQuantity}"/>
+                        <Text id="_IDGenIFPText6" text="{ReportModel>ClosedOrderQuantity}"/>  
+                        <Text id="_IDGenIFPText7" text="{ReportModel>TimeAgreeded} H"/>
+                        <Text id="_IDGenIFPText8" text="{ReportModel>TimeWorked} H"/>
+                        <Text id="_IDGenIFPText9" text="{ReportModel>IFP}%"/>                           
+                    </ColumnListItem>                     
                 </items>
             </Table>
         </f:content>

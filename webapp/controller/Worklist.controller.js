@@ -271,7 +271,7 @@ sap.ui.define([
             oDataModel.getIndicatorSet('IFP',taller,desde,hasta)
                 .then(oData => {
                     this.reportModel.setProperty('/IFPSet', oData.results);
-                    tableIRM.getBinding("items").getModel().setProperty("/IFPSet", oData.results);                    
+                    tableIFP.getBinding("items").getModel().setProperty("/IFPSet", oData.results);                    
                     tableIFP.setBusy(false);
                 })
                 .catch(e => {
